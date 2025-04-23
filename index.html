@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科盛富迈 - 系统演示平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                <img src="logo.png" alt="科盛富迈" style="height: 20px; margin-right: 10px;">
+                <span style="font-size: 1.2rem; color: var(--text-color);">科盛富迈</span>
+            </div>
+            <h1>数智档案管理中枢</h1>
+            <p style="text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 2rem;">文件数智整体解决方案</p>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card" data-url="http://192.168.0.238:12000" data-login="true">
+                <div class="product-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>智能文件柜档案管理系统</h3>
+                <p>第三代智能文件柜，采用全球领先的超高频技术</p>
+                <div class="product-tag">最新</div>
+            </div>
+
+            <div class="product-card" onclick="openSystem('paperless')">
+                <i class="fas fa-file-alt product-icon"></i>
+                <h3>无纸化系统</h3>
+                <p>文档管理与电子签名</p>
+                <span class="product-tag">演示</span>
+            </div>
+
+            <div class="product-card" data-url="http://a.wenzhi.icu:31001" data-login="true">
+                <div class="product-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>干部人事档案管理系统</h3>
+                <p>专业的人事档案管理解决方案</p>
+            </div>
+
+            <div class="product-card" data-url="http://a.wenzhi.icu:8205" data-login="true">
+                <div class="product-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>综合电子档案管理系统</h3>
+                <p>全面的电子档案管理平台</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加加载动画元素 -->
+    <div class="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>正在跳转中...</p>
+        </div>
+    </div>
+
+    <script>
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                const needsLogin = this.getAttribute('data-login') === 'true';
+                
+                if (url) {
+                    showLoading();
+                    setTimeout(() => {
+                        // 在新窗口中打开系统
+                        const newWindow = window.open(url, '_blank');
+                        
+                        // 显示登录提示
+                        if (needsLogin) {
+                            alert('请使用以下账号登录：\n用户名：yanshi\n密码：123456');
+                        }
+                        
+                        hideLoading();
+                    }, 500);
+                }
+            });
+        });
+
+        function showLoading() {
+            const loading = document.querySelector('.loading');
+            loading.style.display = 'flex';
+        }
+
+        function hideLoading() {
+            const loading = document.querySelector('.loading');
+            loading.style.display = 'none';
+        }
+
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function openSystem(system) {
+            const systems = {
+                'paperless': 'http://172.18.0.1:4000/documents',
+                'workflow': 'http://172.18.0.1:4000/workflow',
+                'knowledge': 'http://172.18.0.1:4000/knowledge',
+                'report': 'http://172.18.0.1:4000/report'
+            };
+            // 在新窗口中打开系统
+            const newWindow = window.open(systems[system], '_blank');
+        }
+    </script>
+</body>
+</html> 

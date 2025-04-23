@@ -1,0 +1,251 @@
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #004d99;
+    --background-color: #0a1929;
+    --text-color: #ffffff;
+    --card-bg: rgba(26, 42, 58, 0.8);
+    --accent-color: #00bcd4;
+    --success-color: #4caf50;
+    --glow-color: rgba(0, 102, 204, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: 
+        url('首页.jpg'),
+        radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 188, 212, 0.1) 0%, transparent 20%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.main-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1400px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
+    animation: glow 2s linear infinite;
+}
+
+@keyframes glow {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px var(--glow-color);
+}
+
+.product-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    min-width: 220px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.product-card:hover::before {
+    left: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.product-card:active {
+    transform: translateY(-5px);
+}
+
+.product-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.product-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+}
+
+.product-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.product-tag {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: var(--success-color);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid transparent;
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.loading-content p {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 删除状态栏相关样式 */
+.status-bar,
+.status-info,
+.status-info span {
+    display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .product-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .product-card {
+        min-width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        min-width: 100%;
+    }
+    
+    .main-container {
+        padding: 2rem;
+    }
+} 

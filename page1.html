@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据分析</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <i class="fas fa-chart-line" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+            <h1>数据分析中心</h1>
+            <p style="text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 2rem;">实时数据监控与分析</p>
+        </div>
+        
+        <div class="dashboard">
+            <div class="metric-card" style="background: linear-gradient(135deg, var(--card-bg), rgba(0, 168, 255, 0.1));">
+                <i class="fas fa-users"></i>
+                <h3>活跃用户</h3>
+                <p class="metric-value">1,234</p>
+                <p class="metric-change" style="color: #00ff00;">↑ 12%</p>
+            </div>
+            
+            <div class="metric-card" style="background: linear-gradient(135deg, var(--card-bg), rgba(0, 210, 211, 0.1));">
+                <i class="fas fa-server"></i>
+                <h3>系统负载</h3>
+                <p class="metric-value">45%</p>
+                <p class="metric-change" style="color: #ffa500;">↑ 5%</p>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px;">
+            <h3 style="margin-bottom: 1rem;">实时数据趋势</h3>
+            <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <p style="opacity: 0.7;">图表加载中...</p>
+            </div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" style="margin-top: 2rem;">
+            <i class="fas fa-arrow-left"></i> 返回主页面
+        </button>
+    </div>
+
+    <style>
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .metric-change {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</body>
+</html> 

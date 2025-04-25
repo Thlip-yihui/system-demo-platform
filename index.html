@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="background-slideshow">
+        <img src="首页.jpg" alt="背景1" class="active">
+        <img src="背景1.jpg" alt="背景2">
+        <img src="背景 2.jpg" alt="背景3">
+    </div>
+
     <div class="main-container">
         <div class="header">
             <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
@@ -28,11 +34,12 @@
                 <div class="product-tag">最新</div>
             </div>
 
-            <div class="product-card" onclick="openSystem('paperless')">
-                <i class="fas fa-file-alt product-icon"></i>
-                <h3>无纸化系统</h3>
-                <p>文档管理与电子签名</p>
-                <span class="product-tag">演示</span>
+            <div class="product-card" data-url="http://192.168.0.211:4000/documents" data-login="true">
+                <div class="product-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Paperless智能反写系统</h3>
+                <p>智能文档处理，实现无纸化办公</p>
             </div>
 
             <div class="product-card" data-url="http://a.wenzhi.icu:31001" data-login="true">
@@ -62,24 +69,30 @@
     </div>
 
     <script>
+        // 背景图片轮播
+        const slideshow = document.querySelector('.background-slideshow');
+        const images = slideshow.querySelectorAll('img');
+        let currentImage = 0;
+
+        function nextImage() {
+            images[currentImage].classList.remove('active');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('active');
+        }
+
+        setInterval(nextImage, 3000);
+
+        // 产品卡片点击事件
         const productCards = document.querySelectorAll('.product-card');
         
         productCards.forEach(card => {
             card.addEventListener('click', function() {
                 const url = this.getAttribute('data-url');
-                const needsLogin = this.getAttribute('data-login') === 'true';
                 
                 if (url) {
                     showLoading();
                     setTimeout(() => {
-                        // 在新窗口中打开系统
-                        const newWindow = window.open(url, '_blank');
-                        
-                        // 显示登录提示
-                        if (needsLogin) {
-                            alert('请使用以下账号登录：\n用户名：yanshi\n密码：123456');
-                        }
-                        
+                        window.open(url, '_blank');
                         hideLoading();
                     }, 500);
                 }
@@ -103,17 +116,6 @@
 
         setInterval(updateTime, 1000);
         updateTime();
-
-        function openSystem(system) {
-            const systems = {
-                'paperless': 'http://172.18.0.1:4000/documents',
-                'workflow': 'http://172.18.0.1:4000/workflow',
-                'knowledge': 'http://172.18.0.1:4000/knowledge',
-                'report': 'http://172.18.0.1:4000/report'
-            };
-            // 在新窗口中打开系统
-            const newWindow = window.open(systems[system], '_blank');
-        }
     </script>
 </body>
 </html> 

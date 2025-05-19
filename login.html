@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-slideshow">
+        <img src="背景1.jpg" alt="背景1" class="active">
+        <img src="背景 2.jpg" alt="背景2">
+    </div>
     <div class="login-container">
         <h2>系统登录</h2>
         <form id="loginForm">
@@ -18,8 +22,20 @@
                 <label for="password">密码：</label>
                 <input type="password" id="password" name="password" required>
             </div>
+            <div class="input-group">
+                <label for="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    记住我
+                </label>
+            </div>
             <button type="submit">登录</button>
         </form>
+    </div>
+    <div class="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>正在登录...</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

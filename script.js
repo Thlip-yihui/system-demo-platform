@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 背景轮播功能
+    const backgroundImages = document.querySelectorAll('.background-slideshow img');
+    let currentImageIndex = 0;
+
+    function rotateBackground() {
+        backgroundImages[currentImageIndex].classList.remove('active');
+        currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+        backgroundImages[currentImageIndex].classList.add('active');
+    }
+
+    // 每5秒切换一次背景
+    setInterval(rotateBackground, 5000);
+
     const loginForm = document.getElementById('loginForm');
     const loading = document.querySelector('.loading');
 
